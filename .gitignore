@@ -1,0 +1,4 @@
+_static/videos/*
+/drafts
+/_build
+/.ipynb_checkpoints
