@@ -1,0 +1,13 @@
+/* rtl.css */
+p, li, ul, h1, h2, h3, h4 {
+    direction: rtl; 
+    text-align: right;
+}
+
+/* section:has(img) {
+    text-align: center;
+} */
+
+:root {
+    --pst-font-family-base: "Alef", sans-serif; /* optional: Hebrew font */
+}
