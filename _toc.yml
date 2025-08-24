@@ -5,12 +5,16 @@ format: jb-book
 root: intro
 chapters:
 - file: 0_intro
-- file: 1_types_operators_assignments-a
+- file: 1_0_intro_types
+- file: 1_1_numerical_types
+- file: 1_2_booleans
+- file: 1_3_strings
+- file: 1_4_conversion
 - file: 2_functions-a
 - file: 3_conditions
 - file: 4_lists_ranges
 - file: 5_loops
-- file: 6_assignments-b
+- file: 6_assignments-mutable-vs-immutable
 - file: 7_functions-b
 - file: 8_tuples_dicts
 - file: 9_list-comprehensions
