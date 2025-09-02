@@ -34,9 +34,19 @@ p, li, ul, h1, h2, h3, h4 {
         text-align:right !important;
 }
 
+/* Change the NOTE admonition icon 
+.admonition.note > .admonition-title::after {
+  content: "📝 !important";   
+}*/
 
-/* Optionally widen code/output blocks */
-div.output_area pre {
-    white-space: pre-wrap; /* Prevent horizontal scrolling */
-    word-wrap: break-word;
-}
+/*.admonition.custom-style {
+    background-color: #DCE7FC;
+    color: #800080;
+    border-left: 5px solid #4682b4;
+    padding: 10px;
+    margin-bottom: 1em;
+    direction: rtl; 
+    text-align: right;
+} */
+
+

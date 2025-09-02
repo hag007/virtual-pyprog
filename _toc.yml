@@ -12,7 +12,8 @@ chapters:
 - file: 1_4_conversion
 - file: 2_functions-a
 - file: 3_conditions
-- file: 4_lists_ranges
+- file: 4_1_lists
+- file: 4_2_ranges
 - file: 5_loops
 - file: 6_assignments-mutable-vs-immutable
 - file: 7_functions-b
