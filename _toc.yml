@@ -23,7 +23,7 @@ chapters:
 - file: 5_7_loop_complexity
 - file: 6_assignments-mutable-vs-immutable
 - file: 7_functions-b
-- file: 8_1_data_strctures
+- file: 8_1_data_structures
 - file: 8_2_tuples
 - file: 8_3_dicts
 - file: 9_list-comprehensions
