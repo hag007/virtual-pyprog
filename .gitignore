@@ -3,3 +3,4 @@ _static/videos/*
 /_build
 /.ipynb_checkpoints
 */.ipynb_checkpoints
+not_existing_file.txt
