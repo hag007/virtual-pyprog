@@ -30,6 +30,6 @@ chapters:
 - file: 8_3_dicts
 - file: 10_string-formats
 - file: 11_files
-- file: 13_algorithms
-- file: 12_questions-from-exams-a
+- file: 12_algorithms
+- file: 13_questions-from-exams-a
 
