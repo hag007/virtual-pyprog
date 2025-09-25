@@ -43,6 +43,7 @@ chapters:
 - file: 8_2_nested_loops.ipynb
 - file: 8_3_list-comprehensions.ipynb
 - file: 9_0_intro-complexity.ipynb
+- file: 9_1_complexity-example.ipynb
 - file: 10_0_mutable-vs-immutable.ipynb
 - file: 10_1_memory-in-functions.ipynb
 - file: 11_0_advanced_function_usage.ipynb
