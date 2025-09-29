@@ -34,6 +34,19 @@ p, li, ul, h1, h2, h3, h4 {
         text-align:right !important;
 }
 
+/* Change admonition title font */
+.admonition-title {
+    font-family: inherit !important;
+    font-weight: normal !important;   /* don't force all bold */
+}
+
+/* Only bold spans (from markdown **…**) should get bold */
+.admonition-title strong,
+.admonition-title b {
+    font-weight: bold;
+}
+
+
 /* Change the NOTE admonition icon 
 .admonition.note > .admonition-title::after {
   content: "📝 !important";   

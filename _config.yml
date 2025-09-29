@@ -41,5 +41,5 @@ sphinx:
   extra_extensions:
     - sphinx_togglebutton
   config:
-    togglebutton_hint: "הצג בהרחבה"
-    togglebutton_hide_hint: "סגור"
+    togglebutton_hint: "הציגו בהרחבה"
+    togglebutton_hide_hint: "סגרו"
