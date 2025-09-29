@@ -55,5 +55,10 @@ chapters:
 - file: 15_0_algorithms-intro.ipynb
 - file: 15_1_search.ipynb
 - file: 15_2_sort.ipynb
-
+- file: 16_0_recursion-intro.ipynb
+- file: 16_1_basic-exercises.ipynb
+- file: 16_2_merge-sort.ipynb
+- file: 16_3_knapsack.ipynb
+- file: 16_4_lcs.ipynb
+- file: 16_5_questions-from-exams.ipynb
 
