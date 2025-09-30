@@ -61,4 +61,9 @@ chapters:
 - file: 16_3_knapsack.ipynb
 - file: 16_4_lcs.ipynb
 - file: 16_5_questions-from-exams.ipynb
+- file: 17_0_oop-intro.ipynb
+- file: 17_1_oop-implementation.ipynb
+- file: 17_2_magic-methods.ipynb
+- file: 17_3_operator-overload.ipynb
+- file: 17_4_questions-from-exams.ipynb
 
