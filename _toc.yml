@@ -66,4 +66,10 @@ chapters:
 - file: 17_2_magic-methods.ipynb
 - file: 17_3_operator-overload.ipynb
 - file: 17_4_questions-from-exams.ipynb
+- file: 18_0_numpy-intro.ipynb
+- file: 18_1_image-representation.ipynb
+- file: 18_2_basic-operations.ipynb
+- file: 18_3_image-processing.ipynb
+- file: 18_4_common-functions.ipynb
+- file: 18_5_questions-from-exams.ipynb
 
