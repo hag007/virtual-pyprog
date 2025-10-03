@@ -72,4 +72,16 @@ chapters:
 - file: 18_3_image-processing.ipynb
 - file: 18_4_common-functions.ipynb
 - file: 18_5_questions-from-exams.ipynb
+- file: 19_0_pandas-intro.ipynb
+- file: 19_2_create-df.ipynb
+- file: 19_3_access-df.ipynb
+- file: 19_4_basic_editing.ipynb
+- file: 19_5_advanced_editing.ipynb
+- file: 19_6_combine_dfs.ipynb
+- file: 19_7_basic-quering.ipynb
+- file: 19_8_advanced-quering-groupby.ipynb
+- file: 19_9_data-visualization.ipynb
+- file: 19_10_common-functions.ipynb
+- file: 19_11_questions-from-exams.ipynb
+
 
