@@ -31,6 +31,9 @@ html:
   use_repository_button: true
   extra_css:
     - rtl.css
+  theme:
+    options:
+      show_toc_level: 0
 launch_buttons:
   notebook_interface: "jupyterlab"  # or "classic"
   binderhub_url: "https://mybinder.org"
@@ -43,3 +46,6 @@ sphinx:
   config:
     togglebutton_hint: "הציגו בהרחבה"
     togglebutton_hide_hint: "סגרו"
+    html_theme_options:
+      secondary_sidebar_items: []   # removes the whole right-hand column
+      show_toc_level: 0
