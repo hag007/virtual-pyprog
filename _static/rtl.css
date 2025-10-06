@@ -84,10 +84,18 @@ p, li, ul, h1, h2, h3, h4 {
     padding-left: 0 !important;
   }
 
+
   .bd-main .bd-content,
   .bd-main .bd-content .bd-article-container {
     max-width: 100% !important;
   }
+
+/* Fix tables for RTL (Hebrew / Arabic) content */
+table.docutils,
+div.table-wrapper,
+table {
+  direction: rtl;         /* Make table RTL */
+  text-align: right;      /* Align text properly */
 }
 
 html, body { overflow-x: hidden; }
