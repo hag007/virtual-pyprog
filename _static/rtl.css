@@ -62,4 +62,11 @@ p, li, ul, h1, h2, h3, h4 {
     text-align: right;
 } */
 
+/* Fix tables for RTL (Hebrew / Arabic) content */
+table.docutils,
+div.table-wrapper,
+table {
+  direction: rtl;         /* Make table RTL */
+  text-align: right;      /* Align text properly */
+}
 
