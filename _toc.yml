@@ -43,13 +43,13 @@ parts:
 - caption: מבוא ללולאות
   chapters:
     - file: 5_0_intro-loops.ipynb
-- caption: לולאות `for`
+- caption: לולאות for
   chapters:
     - file: 6_0_for_loops.ipynb
     - file: 6_1_ranges-and-for.ipynb
     - file: 6_2_for-examples.ipynb
     - file: 6_3_for-summary.ipynb
-- caption: לולאות `while`
+- caption: לולאות while
   chapters:
     - file: 7_0_while_loops.ipynb
     - file: 7_1_while-examples.ipynb

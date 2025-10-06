@@ -51,6 +51,27 @@ p, li, ul, h1, h2, h3, h4 {
     font-weight: bold;
 }
 
+/* Fix tables for RTL (Hebrew / Arabic) content */
+table.docutils,
+div.table-wrapper,
+table {
+  direction: rtl;         /* Make table RTL */
+  text-align: right;      /* Align text properly */
+}
+
+/* /* keep toolbar visible but hide the section outline only 
+.bd-sidebar-secondary {
+  width: auto !important;
+  min-width: auto !important;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.bd-sidebar-secondary .bd-toc {
+  display: none !important;   /* hide the "On this page" headings 
+} */
+
 @media (min-width: 992px) {
   /* Remove secondary column entirely */
   :root {
@@ -89,13 +110,5 @@ p, li, ul, h1, h2, h3, h4 {
   .bd-main .bd-content .bd-article-container {
     max-width: 100% !important;
   }
-
-/* Fix tables for RTL (Hebrew / Arabic) content */
-table.docutils,
-div.table-wrapper,
-table {
-  direction: rtl;         /* Make table RTL */
-  text-align: right;      /* Align text properly */
-}
 
 html, body { overflow-x: hidden; }
