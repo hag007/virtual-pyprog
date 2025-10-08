@@ -86,7 +86,7 @@ parts:
     - file: 15_0_algorithms-intro.ipynb
     - file: 15_1_search.ipynb
     - file: 15_2_sort.ipynb
-- caption: רקורסיות
+- caption: רקורסיה
   chapters: 
     - file: 16_0_recursion-intro.ipynb
     - file: 16_1_basic-exercises.ipynb
