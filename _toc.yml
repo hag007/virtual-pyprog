@@ -74,7 +74,7 @@ parts:
     - file: 12_0_data_structures.ipynb
     - file: 12_1_tuples.ipynb
     - file: 12_2_dicts.ipynb
-- caption: ערכים טקסט ועבודה עם קבצים
+- caption: עריכת טקסט ועבודה עם קבצים
   chapters:  
     - file: 13_0_string-formats.ipynb
     - file: 13_1_files.ipynb
