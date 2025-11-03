@@ -55,7 +55,7 @@ jobs:
           test -f "$BOOK_DIR/_config.yml" || (echo "::error::_config.yml missing"; exit 1)
           test -f "$BOOK_DIR/_toc.yml" -o -f "$BOOK_DIR/_toc.toml" || echo "::warning::_toc not found"
 
-          jupyter-book build . --keep-going -vvv 2>&1 | tee ../jb-build.log
+          jupyter-book build . --keep-going -vvv 
 
           test -d _build/html || (echo "::error::_build/html missing"; exit 1)
           test -f _build/html/index.html || (echo "::error::index.html missing in _build/html"; exit 1)
