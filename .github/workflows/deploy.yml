@@ -31,21 +31,17 @@ jobs:
 
       # Detect whether the book is at repo root or in docs/
       - name: Detect book directory
-	  run: |
-	    set -eux
-	    if [ -f "_config.yml" ]; then
-	      BOOK_DIR="."
-	    elif [ -f "docs/_config.yml" ]; then
-	      BOOK_DIR="docs"
-	    else
-	      echo "::error::No _config.yml found in repo root or docs/"
-	      ls -la
-	      exit 1
-	    fi
-	    echo "Detected BOOK_DIR=${BOOK_DIR}"
-	    # make it available to this job's later steps
-	    echo "BOOK_DIR=${BOOK_DIR}" >> "$GITHUB_ENV"
-
+        id: detect
+        run: |
+          set -eux
+          if [ -f "_config.yml" ]; then
+            BOOK_DIR="."
+          elif [ -f "docs/_config.yml" ]; then
+            BOOK_DIR="docs"
+          else
+            echo "::error::No _config.yml found in repo root or docs/"; ls -la; exit 1
+          fi
+          echo "Book dir is: ${BOOK_DIR}"
 
       # Diagnostics so we can see what's going on if build fails
       - name: Diagnostics
