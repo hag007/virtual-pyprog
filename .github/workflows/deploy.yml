@@ -1,84 +1,60 @@
 name: deploy-book
 
+# Run this when the master or main branch changes
 on:
   push:
-    branches: [ master, main ]
+    branches:
+    - master
+    - main
+    # If your git repository has the Jupyter Book within some-subfolder next to
+    # unrelated files, you can make this run only if a file within that specific
+    # folder has been modified.
+    #
+    # paths:
+    # - some-subfolder/**
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
+# This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
   deploy-book:
-    runs-on: ubuntu-22.04
-
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
+    # Install dependencies
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: pip # Implicitly uses requirements.txt for cache key
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+    - name: Install dependencies
+      run: pip install -r requirements.txt
 
-      # Detect whether the book is at repo root or in docs/
-      - name: Detect book directory
-        id: detect
-        run: |
-          set -eux
-          if [ -f "_config.yml" ]; then
-            BOOK_DIR="."
-          elif [ -f "docs/_config.yml" ]; then
-            BOOK_DIR="docs"
-          else
-            echo "::error::No _config.yml found in repo root or docs/"; ls -la; exit 1
-          fi
-          echo "Book dir is: ${BOOK_DIR}"
-          
-          cd ${BOOK_DIR}
+    # (optional) Cache your executed notebooks between runs
+    # if you have config:
+    # execute:
+    #   execute_notebooks: cache
+    - name: cache executed notebooks
+      uses: actions/cache@v4
+      with:
+        path: _build/.jupyter_cache
+        key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
 
-          echo "PWD=$(pwd)"
-          echo "BOOK_DIR=$BOOK_DIR"
-          python --version
-          pip --version
-          which jupyter-book || true
-          jupyter-book --version || true
-          ls -la "$BOOK_DIR"
-          test -f "$BOOK_DIR/_config.yml" || (echo "::error::_config.yml missing"; exit 1)
-          test -f "$BOOK_DIR/_toc.yml" -o -f "$BOOK_DIR/_toc.toml" || echo "::warning::_toc not found"
+    # Build the book
+    - name: Build the book
+      run: |
+        jupyter-book build .
 
-          jupyter-book build . --keep-going -vvv 
+    # Upload the book's HTML as an artifact
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: "_build/html"
 
-          test -d _build/html || (echo "::error::_build/html missing"; exit 1)
-          test -f _build/html/index.html || (echo "::error::index.html missing in _build/html"; exit 1)
-          if [ -d _build/html/CNAME ]; then
-            echo "::error::CNAME is a directory but must be a file"; exit 1
-          fi
-
-      # Always upload the build log so you can see Sphinx/JB errors
-      - name: Upload build log
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: jb-build-log
-          path: jb-build.log
-          if-no-files-found: warn
-
-      # Upload site to Pages
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.BOOK_DIR }}/_build/html
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+    # Deploy the book's HTML to GitHub Pages
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
