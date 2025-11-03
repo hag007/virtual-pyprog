@@ -1,83 +1,66 @@
-# ... keep your existing name/on/permissions/concurrency ...
+name: deploy-book
 
+# Run this when the master or main branch changes
+on:
+  push:
+    branches:
+    - master
+    - main
+    # If your git repository has the Jupyter Book within some-subfolder next to
+    # unrelated files, you can make this run only if a file within that specific
+    # folder has been modified.
+    #
+    # paths:
+    # - some-subfolder/**
+
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
   deploy-book:
     runs-on: ubuntu-22.04
     permissions:
-      contents: read
       pages: write
       id-token: write
-
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
+    # Install dependencies
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: pip # Implicitly uses requirements.txt for cache key
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+    - name: Install dependencies
+      run: pip install -r requirements.txt
 
-      # Decide where the book lives: repo root or docs/
-      - name: Detect book directory
-        id: detect
-        run: |
-          set -eux
-          if [ -f "_config.yml" ]; then
-            echo "BOOK_DIR=." >> "$GITHUB_ENV"
-          elif [ -f "docs/_config.yml" ]; then
-            echo "BOOK_DIR=docs" >> "$GITHUB_ENV"
-          else
-            echo "::error::No _config.yml found in repo root or docs/."
-            echo "Files here:"; ls -la
-            exit 1
-          fi
-          echo "Using BOOK_DIR=${BOOK_DIR:-unset}"
-          # For later steps
-          echo "book_dir=${BOOK_DIR:-.}" >> "$GITHUB_OUTPUT"
+    # (optional) Cache your executed notebooks between runs
+    # if you have config:
+    # execute:
+    #   execute_notebooks: cache
+    - name: cache executed notebooks
+      uses: actions/cache@v4
+      with:
+        path: _build/.jupyter_cache
+        key: jupyter-book-cache-${{ hashFiles('requirements.txt') }}
 
-      - name: Diagnostics
-        run: |
-          set -eux
-          echo "PWD=$(pwd)"
-          echo "BOOK_DIR=$BOOK_DIR"
-          ls -la "$BOOK_DIR"
-          which jupyter-book || true
-          jupyter-book --version || true
+    # Build the book
+    - name: Build the book
+      run: |
+        jupyter-book build .
 
-      - name: Build the book
-        working-directory: ${{ env.BOOK_DIR }}
-        run: |
-          set -eux
-          # Save full logs so we can inspect failures
-          jupyter-book build . --keep-going -vvv 2>&1 | tee ../jb-build.log
+    # Upload the book's HTML as an artifact
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: "_build/html"
 
-      - name: Validate site dir
-        working-directory: ${{ env.BOOK_DIR }}
-        run: |
-          set -e
-          test -d _build/html || (echo "::error::_build/html missing"; exit 1)
-          test -f _build/html/index.html || (echo "::error::index.html missing in _build/html"; exit 1)
-          if [ -d _build/html/CNAME ]; then
-            echo "::error::CNAME is a directory but must be a file"; exit 1
-          fi
-
-      - name: Upload build log (always)
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: jb-build-log
-          path: jb-build.log
-          if-no-files-found: warn
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ${{ env.BOOK_DIR }}/_build/html
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+    # Deploy the book's HTML to GitHub Pages
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
