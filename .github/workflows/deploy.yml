@@ -42,12 +42,9 @@ jobs:
             echo "::error::No _config.yml found in repo root or docs/"; ls -la; exit 1
           fi
           echo "Book dir is: ${BOOK_DIR}"
-          export BOOK_DIR=${BOOK_DIR}
+          
+          cd ${BOOK_DIR}
 
-      # Diagnostics so we can see what's going on if build fails
-      - name: Diagnostics
-        run: |
-          set -eux
           echo "PWD=$(pwd)"
           echo "BOOK_DIR=$BOOK_DIR"
           python --version
@@ -58,18 +55,8 @@ jobs:
           test -f "$BOOK_DIR/_config.yml" || (echo "::error::_config.yml missing"; exit 1)
           test -f "$BOOK_DIR/_toc.yml" -o -f "$BOOK_DIR/_toc.toml" || echo "::warning::_toc not found"
 
-      # Build (verbose, keep logs)
-      - name: Build the book
-        working-directory: ${{ env.BOOK_DIR }}
-        run: |
-          set -eux
           jupyter-book build . --keep-going -vvv 2>&1 | tee ../jb-build.log
 
-      # Validate output so later steps don't try to read a missing dir as a file
-      - name: Validate site dir
-        working-directory: ${{ env.BOOK_DIR }}
-        run: |
-          set -e
           test -d _build/html || (echo "::error::_build/html missing"; exit 1)
           test -f _build/html/index.html || (echo "::error::index.html missing in _build/html"; exit 1)
           if [ -d _build/html/CNAME ]; then
