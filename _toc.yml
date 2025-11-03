@@ -32,6 +32,7 @@ parts:
     - file: 3_3_formal-and-actual-variables.ipynb
     - file: 3_4_advanced-examples.ipynb
     - file: 3_5_caller-callee.ipynb
+    - file: 3_6_questions-from-exams.ipynb 
 - caption: רשימות
   chapters:
     - file: 4_0_intro-list.ipynb
