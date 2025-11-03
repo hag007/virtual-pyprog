@@ -42,6 +42,7 @@ jobs:
             echo "::error::No _config.yml found in repo root or docs/"; ls -la; exit 1
           fi
           echo "Book dir is: ${BOOK_DIR}"
+          export BOOK_DIR=${BOOK_DIR}
 
       # Diagnostics so we can see what's going on if build fails
       - name: Diagnostics
