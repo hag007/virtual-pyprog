@@ -32,6 +32,7 @@ parts:
     - file: 3_3_formal-and-actual-variables.ipynb
     - file: 3_4_advanced-examples.ipynb
     - file: 3_5_caller-callee.ipynb
+    - file: 3_6_questions-from-exams.ipynb 
 - caption: רשימות
   chapters:
     - file: 4_0_intro-list.ipynb
@@ -81,11 +82,11 @@ parts:
 - caption: תרגול אמצע - שאלות ממבחני עבר
   chapters: 
     - file: 14_0_questions-from-exams.ipynb
-- caption: אלגוריתמים יסודיים
-  chapters: 
-    - file: 15_0_algorithms-intro.ipynb
-    - file: 15_1_search.ipynb
-    - file: 15_2_sort.ipynb
+# - caption: אלגוריתמים יסודיים
+#   chapters: 
+#     - file: 15_0_algorithms-intro.ipynb
+#     - file: 15_1_search.ipynb
+#     - file: 15_2_sort.ipynb
 - caption: רקורסיה
   chapters: 
     - file: 16_0_recursion-intro.ipynb
