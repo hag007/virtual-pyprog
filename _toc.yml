@@ -60,6 +60,7 @@ parts:
     - file: 8_1_break_and_continue.ipynb
     - file: 8_2_nested_loops.ipynb
     - file: 8_3_list-comprehensions.ipynb
+    - file: 8_4_questions-from-exams.ipynb
 - caption: מבוא לסיבוכיות
   chapters: 
     - file: 9_0_intro-complexity.ipynb
