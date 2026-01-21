@@ -40,3 +40,5 @@ sphinx:
   config:
     togglebutton_hint: "הציגו בהרחבה"
     togglebutton_hide_hint: "סגרו"
+    html_static_path:
+      - "utils"
