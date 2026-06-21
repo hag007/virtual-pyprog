@@ -3,4 +3,5 @@ _static/videos/*
 /_build
 /.ipynb_checkpoints
 */.ipynb_checkpoints
+**/__pycache__/
 not_existing_file.txt
